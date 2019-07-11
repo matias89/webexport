@@ -2,16 +2,27 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import Button from './components/Button/Button';
+import Card from './components/Card/Card';
+import Modal from './components/Modal/Modal';
 
 const App = () => {
     return (
         <div>
-            <h1>Hola Mundo</h1>
-            <p>Soy un párrafo</p>
-            <Button title="A" />
-            <Button title="B" />
-            <Button title="C" />
-            <Button title="D" />
+            {[0, 1, 2, 3, 4].map(item => {
+                return (
+                    <Modal title={`titulo del modal ${item}`}>
+                        <Card
+                            title={'Soy un titulo '}
+                        />
+                        <Button
+                            title="Boton A"
+                            description="Soy una descripción"
+                            price={100}
+                            handleOnClick={() => window.alert('Hola Mundo!')}
+                        />
+                    </Modal>
+                );
+            })}
         </div>
     );
 }

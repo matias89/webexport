@@ -2,8 +2,12 @@ import React from 'react';
 import './Button.scss';
 
 const Button = props => {
+    const { title, description, price, handleOnClick } = props;
     return (
-        <button className="button">{props.title}</button>
+        <article>
+            <p>{description}</p>
+            <button className="button" onClick={handleOnClick}>{title} - {price}</button>
+        </article>
     );
 }
 
