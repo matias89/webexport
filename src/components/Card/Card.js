@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Button from '../Button/Button';
 
@@ -10,6 +11,13 @@ class Card extends Component {
             message: '',
             buttonDisabled: false
         }
+        this.interval = setInterval(() => {
+            // algo
+        }, 1000)
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval);
+        console.log('>>> Componente desmontado');
     }
     handleOnDelete() {
         this.setState({
@@ -43,5 +51,13 @@ class Card extends Component {
     }
 }
 
+Card.defaultProps = {
+    title: 'Titulo Por Defecto 1',
+    description: 'Descripción por defecto'
+}
+Card.propTypes = {
+    title: PropTypes.string,
+    description: PropTypes.string
+}
 export default Card;
 

@@ -46,7 +46,7 @@ class App extends React.Component {
                         return (
                             <Card
                                 title={title}
-                                description={body}
+                                //description={body}
                                 key={id}
                             />
                         );
