@@ -37,7 +37,7 @@ class Card extends Component {
         return (
             <div className="card">
                 <div className="card-body">
-                    <h1>{title}</h1>
+                    <h2>{title}</h2>
                     <p>{description}</p>
                     <Button
                         title="Eliminar"
