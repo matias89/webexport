@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.4/redux.min.js" integrity="sha256-JNWVNm6Zg9QjkU1JV5euOdUlAEnIn63xtxQstQhGFEg=" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <button id="decrement" class="btn btn-primary mr-4">-</button>
+        <span id="value"></span>
+        <button id="increment" class="btn btn-primary ml-4">+</button>
+    </div>
+    <script>
+    document.getElementById('decrement').addEventListener('click', () => {
+        store.dispatch(decrementAction(8));
+        store.dispatch(decrementAction(12));
+    });
+    document.getElementById('increment').addEventListener('click', () => {
+        store.dispatch(incrementAction(3));
+    });
+
+    // ActionCreators
+    function incrementAction(value) {
+        return {
+            type: 'INCREMENT',
+            payload: {
+                incrementValue: value
+            }
+        }
+    }
+
+    function decrementAction(value) {
+        return {
+            type: 'DECREMENT',
+            payload: {
+                decrementValue: value
+            }
+        }
+    }
+
+    // Reducer
+    function counter(state = 80, action) {
+        switch(action.type) {
+            case 'INCREMENT':
+                return state + action.payload.incrementValue;
+            case 'DECREMENT':
+                return state - action.payload.decrementValue;
+            default:
+                return state;
+        }
+    }
+
+    // Store
+    const store = Redux.createStore(counter);
+
+    // Render
+    const view = document.getElementById('value');
+    function render() {
+        view.innerHTML = store.getState().toString();
+    }
+    render();
+    store.subscribe(render);
+    </script>
+</body>
+</html>

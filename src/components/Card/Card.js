@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {
+    Link
+} from 'react-router-dom';
 
 import Button from '../Button/Button';
 
@@ -15,10 +18,6 @@ class Card extends Component {
             // algo
         }, 1000)
     }
-    componentWillUnmount() {
-        clearInterval(this.interval);
-        console.log('>>> Componente desmontado');
-    }
     handleOnDelete() {
         this.setState({
             message: 'Eliminado',
@@ -33,11 +32,11 @@ class Card extends Component {
         ) : null;
     }
     render() {
-        const { title, description } = this.props;
+        const { title, description, id } = this.props;
         return (
             <div className="card">
                 <div className="card-body">
-                    <h2>{title}</h2>
+                    <h2><Link to={`/detail/${id}`}>{title}</Link></h2>
                     <p>{description}</p>
                     <Button
                         title="Eliminar"
