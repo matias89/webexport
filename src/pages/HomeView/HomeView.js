@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 // Components
 import Card from '../../components/Card/Card'
 
@@ -11,6 +13,7 @@ class HomeView extends Component {
         }
     }
     componentDidMount() {
+        console.log('>>> props', this.props);
         window.fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => {
                 response.json()
@@ -25,6 +28,7 @@ class HomeView extends Component {
             })
     }
     render() {
+        const { counter, increment } = this.props;
         const { posts } = this.state;
         return (
             <div className="container">
@@ -39,6 +43,8 @@ class HomeView extends Component {
                                             title={title}
                                             description={body}
                                             id={id}
+                                            initialValue={counter}
+                                            incrementFn={increment}
                                         />
                                     </div>
                                 );
@@ -57,4 +63,20 @@ class HomeView extends Component {
     };
 }
 
-export default HomeView;
+export default connect(
+    state => {
+        return {
+            counter: state.counter.value
+        }
+    },
+    dispatch => {
+        return {
+            increment: () => dispatch({
+                type: 'INCREMENT',
+                payload: {
+                    incrementValue: 1
+                }
+            })
+        }
+    }
+)(HomeView);
