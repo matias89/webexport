@@ -33,7 +33,7 @@ class Card extends Component {
         ) : null;
     }
     render() {
-        const { title, description, id, initialValue, incrementFn } = this.props;
+        const { title, description, id, initialValue, incrementFn, decrementFn } = this.props;
         return (
             <div className="card">
                 <div className="card-body">
@@ -49,6 +49,7 @@ class Card extends Component {
                     <Counter
                         initialValue={initialValue}
                         incrementFn={incrementFn}
+                        decrementFn={decrementFn}
                     />
                     {this.buildErrorMessage()}
                 </div>

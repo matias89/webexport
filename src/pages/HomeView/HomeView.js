@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import Card from '../../components/Card/Card'
+import Card from '../../components/Card/Card';
+
+// Actions
+import { increment, decrement } from '../../actions/counterActions';
 
 class HomeView extends Component {
     constructor(props) {
@@ -13,7 +16,6 @@ class HomeView extends Component {
         }
     }
     componentDidMount() {
-        console.log('>>> props', this.props);
         window.fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => {
                 response.json()
@@ -28,7 +30,7 @@ class HomeView extends Component {
             })
     }
     render() {
-        const { counter, increment } = this.props;
+        const { counter, increment, decrement } = this.props;
         const { posts } = this.state;
         return (
             <div className="container">
@@ -45,6 +47,7 @@ class HomeView extends Component {
                                             id={id}
                                             initialValue={counter}
                                             incrementFn={increment}
+                                            decrementFn={decrement}
                                         />
                                     </div>
                                 );
@@ -71,12 +74,8 @@ export default connect(
     },
     dispatch => {
         return {
-            increment: () => dispatch({
-                type: 'INCREMENT',
-                payload: {
-                    incrementValue: 1
-                }
-            })
+            increment: increment(dispatch),
+            decrement: decrement(dispatch),
         }
     }
 )(HomeView);
