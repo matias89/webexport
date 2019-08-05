@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Card from '../../components/Card/Card';
 
 // Actions
-import { increment, decrement } from '../../actions/counterActions';
+import { increment, decrement, fetchPosts } from '../../actions/counterActions';
 
 class HomeView extends Component {
     constructor(props) {
@@ -16,6 +16,8 @@ class HomeView extends Component {
         }
     }
     componentDidMount() {
+        this.props.fetchPosts();
+        /*
         window.fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => {
                 response.json()
@@ -28,6 +30,7 @@ class HomeView extends Component {
             .catch(error => {
                 console.log('Error', error);
             })
+        */
     }
     render() {
         const { counter, increment, decrement } = this.props;
@@ -69,13 +72,14 @@ class HomeView extends Component {
 export default connect(
     state => {
         return {
-            counter: state.counter.value
+            counter: state.counterReducer.counter.value
         }
     },
     dispatch => {
         return {
             increment: increment(dispatch),
             decrement: decrement(dispatch),
+            fetchPosts: fetchPosts(dispatch)
         }
     }
 )(HomeView);

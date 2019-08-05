@@ -18,7 +18,14 @@ const decrement = dispatch => () => {
     })
 }
 
+const fetchPosts = dispatch => () => {
+    dispatch({
+        type: 'POST_REQUESTED'
+    })
+}
+
 export {
     increment,
-    decrement
+    decrement,
+    fetchPosts
 }
