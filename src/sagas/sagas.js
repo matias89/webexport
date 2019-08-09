@@ -1,7 +1,11 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 const apiCall = () => {
-    return window.fetch('https://jsonplaceholder.typicode.com/posts')
+    return window.fetch('https://jsonplaceholder.typicode.com/posts', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
         .then(response => {
             return response.json()
                 .then(posts => {
