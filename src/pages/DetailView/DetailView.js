@@ -38,12 +38,3 @@ class DetailView extends Component {
 }
 
 export default DetailView;
-
-/*
-props => {
-                            const { match: { params } } = props;
-                            return (
-                                <h2>Detail { params.id } </h2>
-                            );
-                        }
-                        */

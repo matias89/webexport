@@ -19,6 +19,7 @@ import throttle from 'lodash/throttle';
 // Routes
 import DetailView from '../../pages/DetailView/DetailView';
 import HomeView from '../../pages/HomeView/HomeView';
+import ContactView from '../../pages/ContactView/ContactView';
 // Components
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -70,11 +71,14 @@ class App extends React.Component {
                 <BrowserRouter>
                     <main>
                         <Header />
-                        <Switch>
-                            <Route path="/home" component={HomeView} />
-                            <Route path="/detail/:id" exact component={DetailView} />
-                            <Route component={() => <h1>Error</h1>} />
-                        </Switch>
+                            <div style={{marginTop: '80px'}}>
+                                <Switch>
+                                    <Route path="/home" component={HomeView} />
+                                    <Route path="/contact" component={ContactView} />
+                                    <Route path="/detail/:id" exact component={DetailView} />
+                                    <Route component={() => <h1>Error</h1>} />
+                                </Switch>
+                            </div>
                         <Footer />
                     </main>
                 </BrowserRouter>
