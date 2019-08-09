@@ -12,7 +12,9 @@ import {
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga';
+
+import throttle from 'lodash/throttle';
 
 // Routes
 import DetailView from '../../pages/DetailView/DetailView';
@@ -26,18 +28,35 @@ import reducers from '../../reducers';
 const sagaMiddleware = createSagaMiddleware();
 // Saga
 import mySaga from '../../sagas/sagas';
+// Storage
+import { loadState, saveState } from '../../utilities/localStorage';
+const persitedState = loadState();
 // Store
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
+const _store = createStore(
     reducers,
     composeEnhancers(
         applyMiddleware(
             sagaMiddleware
         )
     )
-    //applyMiddleware(sagaMiddleware)
-    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+const createStoreWithMiddleWare = compose(
+    applyMiddleware(sagaMiddleware)
+)(createStore);
+
+const store = createStoreWithMiddleWare(
+    reducers,
+    persitedState,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+store.subscribe(throttle(() => {
+    () => {
+        saveState(store.getState());
+    }
+}, 1000))
 
 sagaMiddleware.run(mySaga);
 
