@@ -20,6 +20,8 @@ import throttle from 'lodash/throttle';
 import DetailView from '../../pages/DetailView/DetailView';
 import HomeView from '../../pages/HomeView/HomeView';
 import ContactView from '../../pages/ContactView/ContactView';
+import DoorView from '../../pages/DoorView/DoorView';
+import PostsView from '../../pages/PostsView/PostsView';
 // Components
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -75,6 +77,8 @@ class App extends React.Component {
                                 <Switch>
                                     <Route path="/home" component={HomeView} />
                                     <Route path="/contact" component={ContactView} />
+                                    <Route path="/door" component={DoorView} />
+                                    <Route path="/posts" component={PostsView} />
                                     <Route path="/detail/:id" exact component={DetailView} />
                                     <Route component={() => <h1>Error</h1>} />
                                 </Switch>
