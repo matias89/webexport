@@ -24,6 +24,7 @@
 - [x] [Persistencia de datos con localStorage](https://github.com/matias89/webexport/commit/635671f36d973152988444298a8ecde8395d348b)
 - [x] [Formularios](https://github.com/matias89/webexport/commit/5cc91ce9bc783090274f70f59be0471137ee9c72)
 - [x] [Trabajo con formularios: Formik](https://github.com/matias89/webexport/commit/a1102ba70a85301d05f025bcf4adbc3dfdc4e920)
+- [x] [Funciones generadoras](https://github.com/matias89/webexport/blob/master/generators.html)
 - [x] [Sagas](https://github.com/matias89/webexport/commit/4df0b71631ae5909d5652cdff870d92d0ea286c9)
 - [x] [Hooks](https://github.com/matias89/webexport/commit/3baa5fe8a5542bb5c4ab0d497cabf62d3d318ba1)
 - [ ] Observables
