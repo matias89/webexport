@@ -16,6 +16,9 @@ import createSagaMiddleware from 'redux-saga';
 
 import throttle from 'lodash/throttle';
 
+// Services
+import { messageService } from '../../utilities/services';
+
 // Routes
 import DetailView from '../../pages/DetailView/DetailView';
 import HomeView from '../../pages/HomeView/HomeView';
@@ -66,14 +69,52 @@ sagaMiddleware.run(mySaga);
 
 
 class App extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.subscription = null;
+        this.state = {
+            messages: []
+        }
+    }
+
+    componentDidMount() {
+        this.subscription = messageService
+            .getMessage()
+            .subscribe(message => {
+                if(message) {
+                    this.setState({
+                        messages: [...this.state.messages, message]
+                    });
+                } else {
+                    this.setState({
+                        messages: []
+                    });
+                }
+            })
+    }
+
+    componentWillUnmount() {
+        this.subscription.unsubscribe();
+    }
     
     render() {
+        const { messages } = this.state;
         return (
             <Provider store={store}>
                 <BrowserRouter>
                     <main>
                         <Header />
                             <div style={{marginTop: '80px'}}>
+                                <div id="notifications">
+                                    {messages.map((message, index) => {
+                                        return (
+                                            <div key={index} className="alert alert-success">
+                                                <p>{message.text}</p>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                                 <Switch>
                                     <Route path="/home" component={HomeView} />
                                     <Route path="/contact" component={ContactView} />

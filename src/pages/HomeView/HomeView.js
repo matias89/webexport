@@ -8,24 +8,8 @@ import Card from '../../components/Card/Card';
 // Actions
 import { increment, decrement, fetchPosts } from '../../actions/counterActions';
 
-// Interceptor
-const originalFetch = window.fetch;
-window.fetch1 = async function(url, options = {}) {
-    console.log('>>> fetch intercepted');
-    let myFetch = await originalFetch(url, options);
-    if(myFetch.status === 200) { // 401
-        // Request new token and set new header
-        // Then set myFetch again
-        const newOptions = {
-            headers: {
-                //'Content-Type': 'application/json'
-            }
-        }
-        myFetch = await originalFetch(url, newOptions);
-    }
-    console.log('>>> options', options);
-    return myFetch;
-}
+// Services
+import { messageService } from '../../utilities/services';
 
 class HomeView extends Component {
     constructor(props) {
@@ -34,10 +18,33 @@ class HomeView extends Component {
     componentDidMount() {
         this.props.fetchPosts();
     }
+    sendMessage() {
+        window.setTimeout(() => {
+            messageService
+            .sendMessage('Has recibido un nuevo mensaje!');
+        }, 3000);
+    }
+    clearMessage() {
+        messageService.clearMessage();
+    }
     render() {
         const { counter, increment, decrement, posts } = this.props;
         return (
             <div className="container">
+                <div>
+                    <button
+                        onClick={this.sendMessage}
+                        className="btn btn-success"
+                    >
+                        Enviar Mensaje
+                    </button>
+                    <button
+                        onClick={this.clearMessage}
+                        className="btn btn-danger"
+                    >
+                        Borrar Mensajes
+                    </button>
+                </div>
                 {(posts.length) ? (
                     <div className="row">
                         {
