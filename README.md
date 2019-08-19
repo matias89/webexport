@@ -1,4 +1,15 @@
-# webexport
+# WebExport - Curso Avanzado de React
+## Proyecto
+### Instalación
+* Hacer un fork de este proyecto
+* Clonar el fork
+* npm install
+* npm start
+### Descripción
+A partir de la estructura de lo que fuimos haciendo en clase armar una página web que simule un listado de productos (usando [JSON Placeholder](https://jsonplaceholder.typicode.com/) para la carga de productos desde un servicio ) y que permita agregar los productos en un carrito de compras, que se van a ir guardando en el store de Redux.
+- **Portada con el listado de productos**: cada producto se muestra en una [card de Bootstrap](https://getbootstrap.com/docs/4.3/components/card/) y tiene un link para ver el detalle del mismo
+- **Detalle del producto**: Descripción del articulo, un input para indicar la cantidad de productos y un botón para agregar producto al carrito
+- **Detalle del carrito** de compras. Permite quitar productos del carrito
 
 ## Temas
 - [x] Qué es el DOM?
