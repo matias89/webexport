@@ -39,8 +39,8 @@ A partir de la estructura de lo que fuimos haciendo en clase armar una página w
 - [x] [Sagas](https://github.com/matias89/webexport/commit/4df0b71631ae5909d5652cdff870d92d0ea286c9)
 - [x] [Hooks](https://github.com/matias89/webexport/commit/3baa5fe8a5542bb5c4ab0d497cabf62d3d318ba1)
 - [x] Observables
-- [ ] Tests unitarios
-- [ ] Documentación: StoryBook
+- [x] Tests unitarios
+- [x] Documentación: StoryBook
 - [ ] Estructura de un proyecto
 
 ## Instalación del entorno
